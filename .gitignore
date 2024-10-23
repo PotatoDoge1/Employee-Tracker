@@ -37,5 +37,6 @@ pids/
 *.sln
 *.sw?
 
-# Bootcamp README.md
+# Bootcamp README.md and tasks
 todoREADME.md
+tasks/
