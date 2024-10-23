@@ -36,3 +36,6 @@ pids/
 *.njsproj
 *.sln
 *.sw?
+
+# Bootcamp README.md
+todoREADME.md
