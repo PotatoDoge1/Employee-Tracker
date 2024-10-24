@@ -60,7 +60,7 @@ async function startInterface(): Promise<void> {
 async function viewDepartments(): Promise<void> {
     try {
         const res = await client.query('SELECT * FROM department');
-        console.log(res.rows);
+        console.table(res.rows);
     } catch (err) {
         console.error('Error fetching departments in index.ts:', err);
     }
@@ -70,7 +70,7 @@ async function viewDepartments(): Promise<void> {
 async function viewRoles(): Promise<void> {
     try {
         const res = await client.query('SELECT * FROM role');
-        console.log(res.rows);
+        console.table(res.rows);
     } catch (err) {
         console.error('Error fetching departments in index.ts:', err);
     }
@@ -80,7 +80,7 @@ async function viewRoles(): Promise<void> {
 async function viewEmployees(): Promise<void> {
     try {
         const res = await client.query('SELECT * FROM employee');
-        console.log(res.rows);
+        console.table(res.rows);
     } catch (err) {
         console.error('Error fetching departments in index.ts:', err);
     }
