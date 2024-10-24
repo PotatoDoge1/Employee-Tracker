@@ -14,7 +14,7 @@
 - [License](#license)
 
 ## Video Walkthrough
-[Download]
+[Download](https://github.com/PotatoDoge1/Employee-Tracker/raw/refs/heads/main/Employee-Tracker.mkv)
 
 ## Description
 A command-line application that will help a company manage databases for their employees, departments, and roles.   
