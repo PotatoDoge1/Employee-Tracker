@@ -1,16 +1,11 @@
-import pg from 'pg';
-const { Client } = pg;
+import client from './config/db.js';
 import inquirer from 'inquirer';
-import dotenv from 'dotenv';
-dotenv.config();
+//importing a function from a file
+//import viewDepartments from './db/queries.js';
 
-const client = new Client({
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    host: 'localhost',
-    database: process.env.DB_NAME,
-    port: 5432
-});
+//importing an instance of an the Queries class
+import queries from './db/queries.js';
+
 
 async function executeApp() {
     try {
@@ -37,9 +32,11 @@ async function startInterface(): Promise<void> {
     if (answers.viewChoice === 'Exit') {
         return;  // Exit and allow disconnection
     } else if (answers.viewChoice === 'View departments') {
-        await viewDepartments();
+        // above we imported 'queries' which is a class of 'Queries' and had a parameter of 'client' which was the client that was created 
+        // in 'config/db.ts'. the queries object has methods of 'ViewDepartments()' and 'ViewRoles()' and they are called as a method on my queries object
+        await queries.viewDepartments();
     } else if (answers.viewChoice === 'View roles') {
-        await viewRoles();
+        await queries.viewRoles();
     } else if (answers.viewChoice === 'View employees') {
         await viewEmployees();
     } else if (answers.viewChoice === 'Add department') {
@@ -56,31 +53,12 @@ async function startInterface(): Promise<void> {
     await startInterface();
 }
 
-// Function to view departments
-async function viewDepartments(): Promise<void> {
-    try {
-        const res = await client.query('SELECT * FROM department');
-        console.log(res.rows);
-    } catch (err) {
-        console.error('Error fetching departments in index.ts:', err);
-    }
-}
-
-// Function to view roles
-async function viewRoles(): Promise<void> {
-    try {
-        const res = await client.query('SELECT * FROM role');
-        console.log(res.rows);
-    } catch (err) {
-        console.error('Error fetching departments in index.ts:', err);
-    }
-}
 
 // Function to view employees
 async function viewEmployees(): Promise<void> {
     try {
         const res = await client.query('SELECT * FROM employee');
-        console.log(res.rows);
+        console.table(res.rows);
     } catch (err) {
         console.error('Error fetching departments in index.ts:', err);
     }
