@@ -7,6 +7,8 @@ import inquirer from 'inquirer';
 import queries from './db/queries.js';
 
 
+
+
 async function executeApp() {
     try {
         await client.connect();
@@ -51,6 +53,27 @@ async function startInterface(): Promise<void> {
 
     // Call the startInterface function again to continue prompting until Exit is selected
     await startInterface();
+}
+
+
+// Function to view departments
+async function viewDepartments(): Promise<void> {
+    try {
+        const res = await client.query('SELECT * FROM department');
+        console.table(res.rows);
+    } catch (err) {
+        console.error('Error fetching departments in index.ts:', err);
+    }
+}
+
+// Function to view roles
+async function viewRoles(): Promise<void> {
+    try {
+        const res = await client.query('SELECT * FROM role');
+        console.table(res.rows);
+    } catch (err) {
+        console.error('Error fetching departments in index.ts:', err);
+    }
 }
 
 
