@@ -1,4 +1,6 @@
+//importing our client object with our credentials from ./config/db.ts
 import client from './config/db.js';
+//console.log(client);
 import inquirer from 'inquirer';
 //importing a function from a file
 //import viewDepartments from './db/queries.js';
